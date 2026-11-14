@@ -712,12 +712,12 @@ export default function Home() {
             {/* Brand Column */}
             <div className="md:col-span-5">
               <div className="flex items-center gap-3">
-                <div className="relative h-11 w-11 overflow-hidden rounded-xl border border-slate-200 bg-white p-0.5">
+                <div className="relative h-10 w-10 overflow-hidden rounded-xl border border-slate-200 bg-white p-1">
                   <Image
-                    src="/logo.jpg"
+                    src="/icon.png"
                     alt="EB Techworks Logo"
                     fill
-                    sizes="44px"
+                    sizes="40px"
                     className="object-contain"
                   />
                 </div>

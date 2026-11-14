@@ -26,12 +26,12 @@ export default function Navbar() {
           className="flex items-center gap-3 group focus:outline-none"
           aria-label={siteConfig.company.name}
         >
-          <div className="relative h-11 w-11 overflow-hidden rounded-xl border border-slate-200/80 bg-white p-0.5 shadow-xs transition-transform duration-200 group-hover:scale-105">
+          <div className="relative h-10 w-10 overflow-hidden rounded-xl border border-slate-200/80 bg-white p-1 shadow-xs transition-transform duration-200 group-hover:scale-105">
             <Image
-              src="/logo.jpg"
+              src="/icon.png"
               alt="EB Techworks Logo"
               fill
-              sizes="44px"
+              sizes="40px"
               className="object-contain"
               priority
             />

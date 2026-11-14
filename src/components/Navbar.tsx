@@ -6,6 +6,7 @@ import { siteConfig } from "@/data/siteConfig";
 
 const navLinks = [
   { label: "Hakkımızda", href: "#hakkimizda" },
+  { label: "Kurucularımız", href: "#kurucularimiz" },
   { label: "Vizyon & Misyon", href: "#vizyon-misyon" },
   { label: "Amaç & Hedefler", href: "#hedefler" },
   { label: "Projelerimiz", href: "#projeler" },

@@ -267,6 +267,122 @@ export default function Home() {
           </div>
         </section>
 
+        {/* FOUNDERS SECTION */}
+        <section
+          id="kurucularimiz"
+          className="scroll-mt-20 border-t border-slate-200/80 bg-white py-24"
+        >
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            {/* Section Header & Founding Story */}
+            <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-start">
+              <div className="lg:col-span-5">
+                <span className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-50/80 px-3.5 py-1 text-xs font-semibold tracking-wider text-[#0082b3] uppercase">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#00a3e0]" />
+                  {siteConfig.founders.sectionLabel}
+                </span>
+                <h2 className="mt-4 text-3xl font-bold tracking-tight text-[#071324] sm:text-4xl">
+                  {siteConfig.founders.title}
+                </h2>
+                <div className="mt-6 h-1 w-16 rounded-full bg-[#00a3e0]" />
+              </div>
+
+              <div className="lg:col-span-7 space-y-4 rounded-3xl border border-slate-200/80 bg-[#fafafa] p-7 sm:p-9">
+                {siteConfig.founders.introParagraphs.map((para, index) => (
+                  <p
+                    key={index}
+                    className={`leading-relaxed ${
+                      index === 0
+                        ? "text-base font-semibold text-[#071324]"
+                        : "text-sm sm:text-base text-slate-600"
+                    }`}
+                  >
+                    {para}
+                  </p>
+                ))}
+              </div>
+            </div>
+
+            {/* Founder Profile Cards */}
+            <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-2">
+              {siteConfig.founders.items.map((founder) => (
+                <article
+                  key={founder.id}
+                  className="flex flex-col justify-between rounded-3xl border border-slate-200/90 bg-[#fafafa] p-7 sm:p-9 shadow-2xs transition-all hover:border-[#00a3e0]/50 hover:bg-white hover:shadow-xl hover:shadow-slate-900/[0.04]"
+                >
+                  <div>
+                    {/* Founder Portrait & Name Header */}
+                    <div className="flex flex-col gap-5 sm:flex-row sm:items-center border-b border-slate-200/80 pb-6">
+                      <div className="relative h-28 w-28 sm:h-32 sm:w-32 shrink-0 overflow-hidden rounded-2xl border-2 border-white bg-slate-100 shadow-md ring-1 ring-slate-200/90">
+                        <Image
+                          src={founder.image}
+                          alt={founder.name}
+                          fill
+                          sizes="128px"
+                          className="object-cover object-top"
+                        />
+                      </div>
+                      <div>
+                        <span className="inline-flex items-center gap-1.5 rounded-lg bg-sky-50 px-3 py-1 text-xs font-bold text-[#0082b3]">
+                          <span className="h-1.5 w-1.5 rounded-full bg-[#00a3e0]" />
+                          {founder.role}
+                        </span>
+                        <h3 className="mt-2.5 text-2xl font-extrabold tracking-tight text-[#071324] sm:text-3xl">
+                          {founder.name}
+                        </h3>
+                      </div>
+                    </div>
+
+                    {/* Biography Paragraphs */}
+                    <div className="mt-6 space-y-4">
+                      {founder.paragraphs.map((paragraph, pIdx) => (
+                        <p
+                          key={pIdx}
+                          className="text-sm leading-relaxed text-slate-600 sm:text-[15px]"
+                        >
+                          {paragraph}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            {/* Ortak Vizyonumuz Callout Box */}
+            <div className="mt-12 rounded-3xl border border-slate-200/90 bg-[#071324] p-8 sm:p-11 text-white shadow-lg">
+              <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">
+                <div className="lg:col-span-4">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-[#00a3e0]/30 bg-[#00a3e0]/10 px-3.5 py-1 text-xs font-semibold tracking-wider text-[#00a3e0] uppercase">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#00a3e0]" />
+                    Kurucu Yaklaşımımız
+                  </span>
+                  <h3 className="mt-4 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                    {siteConfig.founders.sharedVision.title}
+                  </h3>
+                  <div className="mt-4 h-1 w-12 rounded-full bg-[#00a3e0]" />
+                </div>
+
+                <div className="lg:col-span-8 space-y-4">
+                  {siteConfig.founders.sharedVision.paragraphs.map(
+                    (vPara, vIdx) => (
+                      <p
+                        key={vIdx}
+                        className={`leading-relaxed ${
+                          vIdx === 0
+                            ? "text-base font-medium text-white"
+                            : "text-sm sm:text-base text-slate-300"
+                        }`}
+                      >
+                        {vPara}
+                      </p>
+                    )
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* VISION & MISSION SECTION */}
         <section
           id="vizyon-misyon"
@@ -629,6 +745,11 @@ export default function Home() {
                 <li>
                   <a href="#hakkimizda" className="hover:text-[#0082b3]">
                     Hakkımızda
+                  </a>
+                </li>
+                <li>
+                  <a href="#kurucularimiz" className="hover:text-[#0082b3]">
+                    Kurucularımız
                   </a>
                 </li>
                 <li>

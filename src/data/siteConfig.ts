@@ -37,6 +37,14 @@ export interface SocialItem {
   description: string;
 }
 
+export interface FounderItem {
+  id: string;
+  name: string;
+  role: string;
+  image: string;
+  paragraphs: string[];
+}
+
 export const siteConfig = {
   company: {
     name: "EB Techworks",
@@ -81,6 +89,51 @@ export const siteConfig = {
           "Kısa vadeli trendler yerine uzun vadeli değer üreten, kurumsal güvenilirliği yüksek ve küresel pazarda rekabet edebilen dijital platformlar inşa ediyoruz.",
       },
     ],
+  },
+
+  founders: {
+    sectionLabel: "Kurucularımız",
+    title: "Fikirleri dijital çözümlere dönüştürüyoruz.",
+    introParagraphs: [
+      "EB Techworks, Mehmet Efe Güven ve Burhan Seçkin tarafından farklı sektörlerdeki ihtiyaçlara yönelik yenilikçi, erişilebilir ve sürdürülebilir dijital çözümler geliştirmek amacıyla kurulmuştur.",
+      "İşiCepte'nin geliştirilmesiyle kazanılan deneyimler, farklı sektörlerde karşılaşılan sorunlar ve bu sorunlara yönelik yürütülen kapsamlı fikir alışverişleri, yeni girişimlerin ortaya çıkmasına zemin hazırlamıştır.",
+      "Bu fikirleri bağımsız dijital ürünlere dönüştürmek ve ortak bir kurumsal yapı altında geliştirmek amacıyla EB Techworks hayata geçirilmiştir.",
+      "Farklı mesleki geçmişlerden gelen iki kurucu, ürün geliştirme, stratejik planlama, iş modeli oluşturma ve şirket yönetimi süreçlerini birlikte yürütmektedir.",
+    ],
+    items: [
+      {
+        id: "mehmet-efe-guven",
+        name: "Mehmet Efe Güven",
+        role: "Kurucu Ortak | EB Techworks",
+        image: "/founder-1.jpg",
+        paragraphs: [
+          "Kocaeli Üniversitesi İngilizce İşletme Bölümü mezunu olan Mehmet Efe Güven, finans, lojistik, operasyon yönetimi ve dijital girişimcilik alanlarında deneyim sahibidir.",
+          "Profesyonel kariyerinde Borusan Lojistik'te ekip ve operasyon yönetimi, QNB'de ise bankacılık ve finansal işlemler alanlarında görev almıştır. Bu deneyimleriyle iş süreçlerinin yönetimi, organizasyon, müşteri ilişkileri ve finansal operasyonlar konularında bilgi birikimi edinmiştir.",
+          "Girişimcilik yolculuğuna 2024 yılında SanayimCepte projesiyle başlamış, saha gözlemleri ve kullanıcı geri bildirimleri doğrultusunda projeyi geliştirerek farklı hizmet kategorilerini kapsayan İşiCepte platformunun temellerini atmıştır. Platformun iş modeli, ürün geliştirme, pazarlama ve büyüme stratejilerinin oluşturulmasında aktif sorumluluk üstlenmiştir.",
+          "Bugün EB Techworks'ün kurucu ortağı olarak ürün geliştirme, iş geliştirme, stratejik planlama ve şirket yönetimi süreçlerinde görev almakta; gerçek ihtiyaçlardan hareketle sürdürülebilir ve ölçeklenebilir dijital girişimler geliştirmeye odaklanmaktadır.",
+        ],
+      },
+      {
+        id: "burhan-seckin",
+        name: "Burhan Seçkin",
+        role: "Kurucu Ortak | EB Techworks",
+        image: "/founder-2.jpg",
+        paragraphs: [
+          "Süleyman Demirel Üniversitesi Bilgisayar Programcılığı eğitimi alan Burhan Seçkin, yazılım geliştirme, ürün tasarımı, proje yönetimi ve dijital girişimcilik alanlarında çalışmalar yürütmektedir. Kariyer Mimari bünyesinde aldığı özel yazılım eğitimiyle teknik bilgi birikimini desteklemiştir.",
+          "Profesyonel kariyerinde Teknolist Dijital Eğitim ve Yazılım şirketinde deneyim kazanmış; finans piyasalarına yönelik yazılımlar ve dijital çözümler geliştirerek teknoloji odaklı çalışmalarını sürdürmüştür.",
+          "Yazılım alanındaki geçmişini ürün tasarımı, proje yönetimi, pazarlama ve iş geliştirme alanlarıyla birleştiren Seçkin, teknik çözümlerin kullanıcı ihtiyaçlarına uygun, uygulanabilir ve sürdürülebilir ürünlere dönüştürülmesine odaklanmaktadır.",
+          "Mehmet Efe Güven ile birlikte EB Techworks'ü kuran Seçkin, bugün şirket bünyesindeki dijital girişimlerin ürün geliştirme, stratejik planlama, iş modeli oluşturma ve yönetim süreçlerinde aktif sorumluluk üstlenmektedir.",
+        ],
+      },
+    ] as FounderItem[],
+    sharedVision: {
+      title: "Ortak Vizyonumuz",
+      paragraphs: [
+        "EB Techworks olarak teknolojinin gerçek değerinin, insanların ve işletmelerin karşılaştığı sorunlara ürettiği çözümlerle ortaya çıktığına inanıyoruz.",
+        "Bu anlayışla farklı sektörlerdeki ihtiyaçları analiz ediyor, kullanıcı deneyimini merkeze alan dijital ürünler geliştiriyor ve her girişimimizi uzun vadeli bir bakış açısıyla ele alıyoruz.",
+        "Hedefimiz, EB Techworks bünyesinde güçlü dijital markalar oluşturmak ve geliştirdiğimiz çözümleri Türkiye'den uluslararası pazarlara taşıyarak kalıcı değer üretmektir.",
+      ],
+    },
   },
 
   visionMission: {

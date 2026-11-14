@@ -12,6 +12,15 @@ export default function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
+  const handleReset = () => {
+    setName("");
+    setEmail("");
+    setTopic("Proje & İş Birliği");
+    setMessage("");
+    setErrorMsg("");
+    setSubmitted(false);
+  };
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -207,7 +216,7 @@ export default function ContactSection() {
                   </p>
                   <button
                     type="button"
-                    onClick={() => setSubmitted(false)}
+                    onClick={handleReset}
                     className="mt-5 rounded-xl bg-emerald-800 px-4 py-2 text-xs font-semibold text-white hover:bg-emerald-900 cursor-pointer"
                   >
                     Yeni Mesaj Gönder

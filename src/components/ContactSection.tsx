@@ -8,18 +8,56 @@ export default function ContactSection() {
   const [email, setEmail] = useState("");
   const [topic, setTopic] = useState("Proje & İş Birliği");
   const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setErrorMsg("");
 
-    // Prepare mailto link so it works immediately even without a backend server
-    const subject = encodeURIComponent(`[EB Techworks Web] ${topic} - ${name}`);
-    const body = encodeURIComponent(
-      `Ad Soyad / Kurum: ${name}\nE-posta: ${email}\nKonu: ${topic}\n\nMesaj:\n${message}`
-    );
-    window.location.href = `mailto:${siteConfig.company.email}?subject=${subject}&body=${body}`;
+    try {
+      const response = await fetch(
+        `https://formsubmit.co/ajax/${siteConfig.company.email}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            "Ad Soyad / Kurum": name,
+            "E-Posta": email,
+            "İletişim Konusu": topic,
+            Mesaj: message,
+            _subject: `[EB Techworks Web] ${topic} - ${name}`,
+            _replyto: email,
+            _template: "table",
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok && data.success !== "false") {
+        setSubmitted(true);
+        setName("");
+        setEmail("");
+        setTopic("Proje & İş Birliği");
+        setMessage("");
+      } else {
+        setErrorMsg(
+          "Mesaj gönderilirken bir sorun oluştu. Lütfen doğrudan e-posta adresimiz üzerinden bize ulaşın."
+        );
+      }
+    } catch {
+      setErrorMsg(
+        "Bağlantı hatası oluştu. Lütfen internet bağlantınızı kontrol edip tekrar deneyin."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -103,13 +141,13 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <div className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
-                      Merkez & Operasyon
+                      Merkez &amp; Operasyon
                     </div>
                     <div className="mt-0.5 text-sm font-semibold text-[#071324]">
                       {siteConfig.company.location}
                     </div>
                     <div className="text-xs text-slate-500">
-                      Uzaktan & Hibrit Teknoloji Geliştirme Merkezi
+                      Uzaktan &amp; Hibrit Teknoloji Geliştirme Merkezi
                     </div>
                   </div>
                 </div>
@@ -140,7 +178,7 @@ export default function ContactSection() {
               </p>
 
               {submitted ? (
-                <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50/70 p-6 text-center">
+                <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50/70 p-7 text-center">
                   <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
                     <svg
                       className="h-6 w-6"
@@ -157,25 +195,32 @@ export default function ContactSection() {
                     </svg>
                   </div>
                   <h4 className="mt-4 text-base font-bold text-emerald-950">
-                    Mesaj Taslağınız Hazırlandı!
+                    Mesajınız Başarıyla Gönderildi!
                   </h4>
                   <p className="mt-1.5 text-sm text-emerald-800">
-                    E-posta istemciniz üzerinden mesajınızı{" "}
+                    Mesajınız doğrudan{" "}
                     <span className="font-semibold">
                       {siteConfig.company.email}
                     </span>{" "}
-                    adresine iletebilirsiniz.
+                    adresimize iletilmiştir. En kısa sürede size dönüş
+                    yapacağız.
                   </p>
                   <button
                     type="button"
                     onClick={() => setSubmitted(false)}
                     className="mt-5 rounded-xl bg-emerald-800 px-4 py-2 text-xs font-semibold text-white hover:bg-emerald-900 cursor-pointer"
                   >
-                    Yeni Mesaj Oluştur
+                    Yeni Mesaj Gönder
                   </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="mt-6 space-y-5">
+                  {errorMsg && (
+                    <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-xs font-medium text-red-700">
+                      {errorMsg}
+                    </div>
+                  )}
+
                   <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                     <div>
                       <label
@@ -228,15 +273,15 @@ export default function ContactSection() {
                       className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 focus:border-[#00a3e0] focus:ring-2 focus:ring-[#00a3e0]/20 focus:outline-none"
                     >
                       <option value="Proje & İş Birliği">
-                        Proje & İş Birliği
+                        Proje &amp; İş Birliği
                       </option>
                       <option value="Yatırım & Ortaklık">
-                        Yatırım & Ortaklık
+                        Yatırım &amp; Ortaklık
                       </option>
                       <option value="Kurumsal Bilgi Talebi">
                         Kurumsal Bilgi Talebi
                       </option>
-                      <option value="Kariyer & Ekip">Kariyer & Ekip</option>
+                      <option value="Kariyer & Ekip">Kariyer &amp; Ekip</option>
                       <option value="Diğer">Diğer</option>
                     </select>
                   </div>
@@ -261,9 +306,12 @@ export default function ContactSection() {
 
                   <button
                     type="submit"
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#071324] px-6 py-3.5 text-sm font-semibold text-white shadow-xs transition-all hover:bg-[#0f2442] cursor-pointer"
+                    disabled={isSubmitting}
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#071324] px-6 py-3.5 text-sm font-semibold text-white shadow-xs transition-all hover:bg-[#0f2442] disabled:opacity-60 cursor-pointer"
                   >
-                    <span>Mesajı Gönder</span>
+                    <span>
+                      {isSubmitting ? "Gönderiliyor..." : "Mesajı Gönder"}
+                    </span>
                     <svg
                       className="h-4 w-4 text-[#00a3e0]"
                       fill="none"
